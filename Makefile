@@ -15,8 +15,8 @@ REVISION = 7
 LIB = libcli.so
 LIB_STATIC = libcli.a
 
-CC = gcc
-AR = ar
+CC = $(CROSS_PREFIX)gcc
+AR = $(CROSS_PREFIX)ar
 ARFLAGS = rcs
 DEBUG = -g
 OPTIM = -O3

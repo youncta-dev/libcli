@@ -2028,10 +2028,10 @@ static void _print(struct cli_def *cli, int print_mode, const char *format, va_l
                 cli->print_callback(cli, p);
             else if (cli->client) {
                 if (print_mode & PRINT_NO_NEWLINE) {
-                    fprintf(cli->client, "%s\r\n", p);
+                    fprintf(cli->client, "%s", p);
                 }
                 else {
-                    fprintf(cli->client, "%s", p);
+                    fprintf(cli->client, "%s\r\n", p);
                 }
             }  
         }

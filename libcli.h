@@ -29,6 +29,7 @@ extern "C" {
 #define PRINT_PLAIN             0
 #define PRINT_FILTERED          0x01
 #define PRINT_BUFFERED          0x02
+#define PRINT_NO_NEWLINE        0x08
 
 #define CLI_MAX_LINE_LENGTH     4096
 #define CLI_MAX_LINE_WORDS      128
@@ -109,6 +110,7 @@ void cli_reprompt(struct cli_def *cli);
 void cli_regular(struct cli_def *cli, int (*callback)(struct cli_def *cli));
 void cli_regular_interval(struct cli_def *cli, int seconds);
 void cli_print(struct cli_def *cli, const char *format, ...) __attribute__((format (printf, 2, 3)));
+void cli_print_no_newline(struct cli_def *cli, const char *format, ...) __attribute__((format (printf, 2, 3)));
 void cli_bufprint(struct cli_def *cli, const char *format, ...) __attribute__((format (printf, 2, 3)));
 void cli_vabufprint(struct cli_def *cli, const char *format, va_list ap);
 void cli_error(struct cli_def *cli, const char *format, ...) __attribute__((format (printf, 2, 3)));

@@ -2026,8 +2026,14 @@ static void _print(struct cli_def *cli, int print_mode, const char *format, va_l
         {
             if (cli->print_callback)
                 cli->print_callback(cli, p);
-            else if (cli->client)
-                fprintf(cli->client, "%s\r\n", p);
+            else if (cli->client) {
+                if (print_mode & PRINT_NO_NEWLINE) {
+                    fprintf(cli->client, "%s\r\n", p);
+                }
+                else {
+                    fprintf(cli->client, "%s", p);
+                }
+            }  
         }
 
         p = next;
@@ -2061,6 +2067,15 @@ void cli_print(struct cli_def *cli, const char *format, ...)
 
     va_start(ap, format);
     _print(cli, PRINT_FILTERED, format, ap);
+    va_end(ap);
+}
+
+
+void cli_print_no_newline(struct cli_def *cli, const char *format, ...)
+{
+    va_list ap;
+    va_start(ap, format);
+    _print(cli, PRINT_NO_NEWLINE, format, ap);
     va_end(ap);
 }
 
